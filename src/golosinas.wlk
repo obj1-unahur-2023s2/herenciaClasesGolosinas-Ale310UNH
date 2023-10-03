@@ -16,24 +16,22 @@ object limon { }
  	var peso
  	var precio
  	var sabor
- 	method libreGluten() { return true }
+ 	
+ 	method libreGluten() = true
  	method peso() = peso
  	method precio() = precio
  	method sabor() = sabor
  }
  
 class Bombon inherits Golosina(peso = 15, precio = 5, sabor = frutilla) {
-	method initialize() {
-		peso = 15
-	}
 	
 	
-	method mordisco() { peso = peso * 0.8 - 1 }
+	method mordisco() { peso = 0.max(peso * 0.8 - 1) }
 }
 
 class BombonDuro inherits Bombon {
-	method dureza() = if(peso >= 12) 3 else if(peso.between(9, 12)) 2 else 1
-	override method mordisco() { peso -=  1}
+	method gradoDureza() = if(peso >= 12) 3 else if(peso.between(9, 12)) 2 else 1
+	override method mordisco() { peso = 0.max(peso - 1)}
 }
 
 
@@ -84,7 +82,6 @@ class Chocolatin {
 	method peso() { return (pesoInicial - comido).max(0) }
 	method mordisco() { comido = comido + 2 }
 	method sabor() { return chocolate } method libreGluten() { return false }
-
 }
 
 class GolosinaBaniada {

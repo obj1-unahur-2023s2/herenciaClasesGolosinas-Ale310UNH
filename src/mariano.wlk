@@ -63,6 +63,16 @@ object mariano {
 	method tieneGolosinaDeSabor(_sabor) {
 		return golosinas.any({_golosina => _golosina.sabor() == _sabor})
 	}
+	
+	method baniar(unaGolosina) {
+		if (golosinas.contain(unaGolosina)) {
+			golosinas.remove(unaGolosina)
+			golosinas.add(new GolosinaBaniada(golosinaInterior = unaGolosina))
+		}
+		else {
+			golosinas.add(new GolosinaBaniada(golosinaInterior = unaGolosina))
+		}
+	}
 }
 
 

@@ -65,7 +65,7 @@ object mariano {
 	}
 	
 	method baniar(unaGolosina) {
-		if (golosinas.contain(unaGolosina)) {
+		if (golosinas.any({golo => golo == unaGolosina})) {
 			golosinas.remove(unaGolosina)
 			golosinas.add(new GolosinaBaniada(golosinaInterior = unaGolosina))
 		}
@@ -74,18 +74,3 @@ object mariano {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
